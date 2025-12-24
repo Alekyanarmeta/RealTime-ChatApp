@@ -1,0 +1,41 @@
+.App {
+    background-image: url(https://tse2.mm.bing.net/th/id/OIP.Ym_-RaQmVjVpcD4jrfjUsgHaE8?pid=Api&P=0&h=180);
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.menu1 {
+    background-color: white;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.search:hover {
+    box-shadow: 10px;
+    border-radius: 10px;
+    background-color: rgb(204, 243, 229);
+}
+
+.chatsearch {
+    margin-top: 15%;
+}
+
+@media(min-width:700px) {
+    .chatsearch {
+        margin-top: 8%;
+    }
+}
+
+@media(min-width:800px) {
+    .chatsearch {
+        margin-top: 5%;
+    }
+}
