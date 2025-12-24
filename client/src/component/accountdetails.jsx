@@ -15,7 +15,7 @@ function Accountdetails({ data }) {
     const leavegroup = async (userId) => {
         try {
             const payload = { chatId: data._id, userId }
-            const response = await axios.put("http://localhost:8080/api/leavegroup", payload, {
+            const response = await axios.put("https://realtime-chatapp-fe5f.onrender.com/api/leavegroup", payload, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

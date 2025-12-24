@@ -18,7 +18,7 @@ function Allchats({ setSelectedChat }) {
         }
 
         const response = await axios.get(
-          "http://localhost:8080/api/fetchchats",
+          "https://realtime-chatapp-fe5f.onrender.com/api/fetchchats",
           {
             headers: {
               Authorization: `Bearer ${token}`,

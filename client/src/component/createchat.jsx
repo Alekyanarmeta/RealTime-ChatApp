@@ -23,7 +23,7 @@ function Createaccount({ setadduser, groupmembers, chatId }) {
         searchAccount(null)
       }
       else {
-        const response = await axios.get("http://localhost:8080/api/allusers",
+        const response = await axios.get("https://realtime-chatapp-fe5f.onrender.com/api/allusers",
           {
             params: { search: name }
           }
@@ -42,7 +42,7 @@ function Createaccount({ setadduser, groupmembers, chatId }) {
   const createChat = async (data) => {
     try {
       const payload = data
-      const response = await axios.post("http://localhost:8080/api/creategroup", payload)
+      const response = await axios.post("https://realtime-chatapp-fe5f.onrender.com/api/creategroup", payload)
       if (response.data.message === "already chat created") {
         alert("already chat created")
       }
@@ -63,7 +63,7 @@ function Createaccount({ setadduser, groupmembers, chatId }) {
       }
       const payload = { chatId, userId }
       const response = await axios.put(
-        "http://localhost:8080/api/groupadd",
+        "https://realtime-chatapp-fe5f.onrender.com/api/groupadd",
         payload,
         {
           headers: {

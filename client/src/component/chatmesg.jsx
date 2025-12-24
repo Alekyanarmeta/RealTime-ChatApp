@@ -32,7 +32,7 @@ function Chatmesg({ data }) {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:8080/api/allmessages/${data._id}`,
+        `https://realtime-chatapp-fe5f.onrender.com/api/allmessages/${data._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -93,7 +93,7 @@ function Chatmesg({ data }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/sendmessage",
+        "https://realtime-chatapp-fe5f.onrender.com/api/sendmessage",
         { chatId: data._id, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -124,7 +124,7 @@ function Chatmesg({ data }) {
 
     try {
       const res = await axios.put(
-        "http://localhost:8080/api/rename",
+        "https://realtime-chatapp-fe5f.onrender.com/api/rename",
         {
           chatId: data._id,
           chatName: chatNameRef.current.value,

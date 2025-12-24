@@ -36,16 +36,9 @@ function Homepage() {
       const payload = { name: nameVal, email: emailVal, password: passwordVal };
 
       const response = await axios.post(
-        "http://localhost:8080/api/signin",
+        "https://realtime-chatapp-fe5f.onrender.com/api/signin",
         payload
       );
-
-      console.log(pic.current.files)
-      const file = pic.current.files[0]
-      const preview = URL.createObjectURL(file);
-
-      console.log(preview)
-
       if (name.current) name.current.value = "";
       if (email.current) email.current.value = "";
       if (password.current) password.current.value = "";
@@ -69,7 +62,7 @@ function Homepage() {
         password: password.current.value,
       };
       const response = await axios.post(
-        "http://localhost:8080/api/login",
+        "https://realtime-chatapp-fe5f.onrender.com/api/login",
         payload
       );
 
