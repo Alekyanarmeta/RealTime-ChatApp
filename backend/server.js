@@ -9,10 +9,16 @@ const chatroute = require("./controllers/chats");
 const mesgroute = require("./controllers/message")
 const http = require("http");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://694cbb82653b5da90d012744--sparkly-fox-4d5d71.netlify.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: allowedOrigins,
   credentials: true
 }));
+
 dotenv.config();
 
 const PORT = process.env.PORT || port;
@@ -37,7 +43,7 @@ app.get("/", (req, res) => {
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT"],
     credentials: true,
   },
