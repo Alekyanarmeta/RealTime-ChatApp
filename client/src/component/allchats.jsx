@@ -40,20 +40,26 @@ function Allchats({ setSelectedChat }) {
   }, []);
 
   return (
-    <div>
+    <div >
       <input
         type="search"
         placeholder="Search chats"
         className="w-100 mb-2 p-2 rounded-2 border"
       />
-      <div className="overflow-y-auto" style={{ maxHeight: "100vh", scrollbarWidth: "none" }}>
+      <div className="overflow-y-auto " style={{ maxHeight: "100vh", scrollbarWidth: "none" }}>
         {
           chats && chats.map(
             (item) => (
-              <div key={item._id} className="bg-primary border rounded" onClick={() => {
-                setSelectedChat(item)
-              }}>
+
+              <div key={item._id} className="border rounded ps-2 bg-white mb-2"
+                onClick={() => {
+                  setSelectedChat(item)
+
+                }}>
                 <p>{item.chatName}</p>
+                {item.latestMessage && <div style={{ color: 'rgb(100,100,120)' }}>
+                  {item.latestMessage.content}
+                </div>}
               </div>
             )
           )

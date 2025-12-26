@@ -33,7 +33,7 @@ function Homepage() {
         return;
       }
 
-      const payload = { name: nameVal, email: emailVal, password: passwordVal };
+      const payload = { name: nameVal, email: emailVal, password: passwordVal, pic: pic.current.value };
 
       const response = await axios.post(
         "https://realtime-chatapp-fe5f.onrender.com/api/signin",
@@ -101,7 +101,7 @@ function Homepage() {
               ref={password}
             />
             <label>Upload Pic</label>
-            <input type="file" accept="image/jpeg, image/png image/jpg" ref={pic} />
+            <input type="image" ref={pic} />
             <button
               className="btn btn-success mt-4 w-50"
               style={{ marginLeft: "25%" }}

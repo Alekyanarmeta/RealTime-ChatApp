@@ -27,7 +27,7 @@ function Accountdetails({ data }) {
         }
     }
     return (
-        <div className="bg-light w-50 mt-2  overflow-y-auto border rounded position-absolute " style={{ maxHeight: "60vh", cursor: "pointer", scrollbarWidth: "none", top: "15%" }}>
+        <div className="bg-light w-50 mt-2  overflow-y-auto border rounded position-absolute " style={{ maxHeight: "60vh", cursor: "pointer", scrollbarWidth: "none", top: "15%", left: "30%" }}>
             <div className="ps-2 pt-2">
                 <h5>Admin</h5>
                 <img src={data.groupAdmin.pic} alt="pic" className="col-2" />

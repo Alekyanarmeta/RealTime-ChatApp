@@ -5,7 +5,7 @@ import Accountdetails from "./accountdetails";
 import socket from "../config/socket";
 import { ChatState } from "../config/Context";
 
-function Chatmesg({ data }) {
+function Chatmesg({ data, setSelectedChat }) {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -143,14 +143,16 @@ function Chatmesg({ data }) {
   };
 
   if (!data) {
-    return <div className="m-auto text-muted">Click on user to start chat</div>;
+    return <div className="m-auto text-muted  min-vh-100 d-flex justify-content-center align-items-center"><div>Click on user to start chat</div></div>;
   }
 
   return (
     <div className="h-100 d-flex flex-column">
       {/* Header */}
-      <div className="d-flex justify-content-center p-2">
-        <div className="bg-success text-white rounded px-3 py-2 d-flex gap-3 align-items-center">
+
+      <div className="d-flex justify-content-center align-items-center p-2">
+        <div className="bg-white rounded-2 position-absolute Backbtn" style={{ left: "25px" }} onClick={() => setSelectedChat(null)} ><img src={"/back.png"} style={{ width: "30px", height: "30px" }} /></div>
+        <div className="text-white rounded px-3 py-2 d-flex gap-3 align-items-center" style={{ backgroundColor: 'rgba(169, 154, 154, 1)' }}>
           {editMode ? (
             <>
               <input ref={chatNameRef} defaultValue={chatName} />
@@ -179,10 +181,15 @@ function Chatmesg({ data }) {
 
       {/* Messages */}
       <div
-        className="flex-grow-1 overflow-y-auto p-2 bg-primary"
-        style={{ maxHeight: "70vh" }}
+        className="flex-grow-1 overflow-y-auto p-2 "
+        style={{ maxHeight: "70vh", backgroundColor: 'rgba(140, 153, 205, 1)' }}
       >
-        {loading ? "Loading..." : <ScrollableChat messages={messages} />}
+        {loading ? <div className="d-flex justify-content-center align-items-center " style={{ height: "100%" }}>
+          <div className="spinner-border text-white" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+          : <ScrollableChat messages={messages} />}
 
         {typing && (
           <div className="ms-2">

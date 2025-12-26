@@ -5,27 +5,14 @@ const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
     const [selectedChat, setSelectedChat] = useState();
-    const [user, setUser] = useState();
+
     const [notification, setNotification] = useState([]);
     const [chats, setChats] = useState();
-
-
-
-    useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-        setUser(userInfo);
-
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <ChatContext.Provider
             value={{
                 selectedChat,
                 setSelectedChat,
-                user,
-                setUser,
                 notification,
                 setNotification,
                 chats,

@@ -7,20 +7,25 @@ import socket from "../config/socket.js";
 import { useEffect } from "react";
 import { ChatState } from "../config/Context.jsx";
 import { useNavigate } from "react-router-dom";
-
+import "../App.css"
 function Chatpage() {
   const { notification, setNotification } = ChatState()
   const [notificationchat, setnotificationchat] = useState(false)
+  const [userprofile, setuserprofile] = useState(false)
   const navigate = useNavigate()
 
   console.log("notification", notification)
 
   const user = JSON.parse(localStorage.getItem("userinfo"))
+
+  console.log(user)
   const [menuOpen, setMenuOpen] = useState(false);
   const [opencreateaccount, setcreateaccount] = useState(false);
 
   const [selectedChat, setSelectedChat] = useState(null);
   const showOverlay = menuOpen || opencreateaccount;
+
+  const headcomponent = menuOpen || opencreateaccount || notificationchat || userprofile
 
   useEffect(() => {
     socket.connect();
@@ -35,7 +40,7 @@ function Chatpage() {
     };
   }, []);
   return (
-    <div className="chat w-100 min-vh-100 m-3 d-flex flex-column position-relative">
+    <div className="chat w-100 min-vh-100 m-3 d-flex flex-column position-relative" style={{ backgroundImage: "url(/image.png)" }}>
 
 
       <div className="ms-2 d-flex justify-content-between align-items-center">
@@ -52,7 +57,7 @@ function Chatpage() {
           <div className="position-relative d-inline-block">
             <img
               src="/notification.png"
-              alt="noti"
+              alt="notification"
               style={{ width: "20px", height: "20px" }}
               onClick={() => setnotificationchat(prev => !prev)}
             />
@@ -94,7 +99,16 @@ function Chatpage() {
           >
             Create chat
           </p>
-          <p className="mb-0">Pic</p>
+          <img src={user.pic} className="mb-0 border rounded-circle" style={{ width: "35px", height: "35px" }} onClick={() => setuserprofile(prev => !prev)} />
+          {userprofile && (<div className="bg-light col-5 col-md-3 profile d-flex flex-column justify-content-center align-items-center p-5 pt-3 rounded-3" >
+            <div >
+              <img src={user.pic} className="rounded-circle" style={{ width: "60px", height: "60px" }} />
+            </div>
+            <div>
+              <p>username: {user.name}</p>
+              <p>email: {user.email}</p>
+            </div>
+          </div>)}
         </div>
       </div>
 
@@ -136,13 +150,16 @@ function Chatpage() {
       )}
 
       {/* Chat Section */}
-      <div className="d-flex flex-grow-1">
-        <div className="w-25 bg-light m-2 me-0 p-2 rounded-2">
+      <div className={`d-flex flex-grow-1 ${headcomponent ? "opacity-3" : ""}`}>
+
+        <div
+          className={`col-4 col-md-3 m-2 me-0 p-2 rounded-2 ${selectedChat ? "allchats1" : "allchats"}`}
+          style={{ backgroundColor: 'rgba(49, 61, 68, 0.31)' }}>
           <Allchats setSelectedChat={setSelectedChat} />
         </div>
 
-        <div className="bg-light m-2 p-2 rounded-2 flex-grow-1 d-flex flex-column">
-          <Chatmesg data={selectedChat} />
+        <div className={`bg-light m-2 p-2 rounded-2 chatmesg  ${selectedChat ? "flex-grow-1" : "chatmesg1"} `} >
+          <Chatmesg data={selectedChat} setSelectedChat={setSelectedChat} />
         </div>
       </div>
     </div>
